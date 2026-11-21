@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Block private/admin/cart/account areas from indexing
+Disallow: /admin
+Disallow: /admin-*.html
+Disallow: /checkout.html
+Disallow: /dashboard.html
+Disallow: /my-orders.html
+Disallow: /my-commissions.html
+Disallow: /my-downloads.html
+Disallow: /login.html
+Disallow: /register.html
+
+Sitemap: https://ikaze-art-design.com/sitemap_index.xml
