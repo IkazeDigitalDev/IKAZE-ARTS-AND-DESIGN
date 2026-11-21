@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://ikaze-art-design.com/artwork/silent-gaze</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://ikaze-art-design.com/images/artworks/silent-gaze-800.jpg</image:loc>
+      <image:title>Silent Gaze — Graphite Portrait by NIYIBIGIRA Theoneste</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://ikaze-art-design.com/artwork/african-soul</loc>
+    <lastmod>2025-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://ikaze-art-design.com/images/artworks/african-soul-800.jpg</image:loc>
+      <image:title>African Soul — Acrylic Painting by MUHAWENAYO Pacifique</image:title>
+    </image:image>
+  </url>
+  <!-- Generate one <url> block per artwork -->
+</urlset>
