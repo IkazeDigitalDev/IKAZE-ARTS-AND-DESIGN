@@ -1,0 +1,3129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IKAZE ART & DESIGN — Where Imagination Becomes Art</title>
+  <meta name="description" content="Discover original drawings, expressive artwork, creative digital design, artistic products, and personalized commissions by NIYIBIGIRA Theoneste & MUHAWENAYO Pacifique.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="IKAZE ART & DESIGN — Where Imagination Becomes Art">
+  <meta property="og:description" content="Premium art, digital design, and creative commerce ecosystem. Original drawings, portraits, commissions, and creative products.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1549887534-1541e9326642?q=80&w=1200&auto=format&fit=crop">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & GLOBAL ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gallery-black: #151515;
+      --canvas-ivory: #F4F0E8;
+      --art-gold: #BDA06A;
+      --creative-stone: #73746B;
+      --pure-white: #FFFFFF;
+      --art-forest: #304C43;
+      --muted-gray: #A6A6A6;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Inter', sans-serif;
+      --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--gallery-black);
+      color: var(--canvas-ivory);
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: default;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.no-scroll { overflow: hidden; }
+
+    /* Custom cursor */
+    .cursor-glow {
+      position: fixed;
+      width: 28px;
+      height: 28px;
+      border: 1.5px solid rgba(189, 160, 106, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transition: transform 0.12s ease, width 0.25s, height 0.25s, background 0.25s, opacity 0.3s;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+      opacity: 0;
+    }
+    body:hover .cursor-glow { opacity: 1; }
+    .cursor-glow.hover { width: 46px; height: 46px; background: rgba(189, 160, 106, 0.15); }
+
+    a, button, .art-card, .product-card, .category-card, .collection-card, .service-card, .world-card, input, select, textarea, .filter-chip, .faq-item { cursor: none; }
+
+    /* ========== 3D CANVAS BACKGROUND ========== */
+    #bg-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 30% 40%, rgba(21,21,21,0.15) 0%, rgba(21,21,21,0.75) 90%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ========== LAYOUT ========== */
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    /* ========== HEADER / NAV ========== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 0;
+      background: rgba(21, 21, 21, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(189, 160, 106, 0.15);
+      transition: background 0.3s, padding 0.3s;
+    }
+    header.scrolled {
+      background: rgba(21, 21, 21, 0.92);
+      padding: 1rem 0;
+      border-bottom-color: rgba(189, 160, 106, 0.3);
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      color: var(--canvas-ivory);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      transition: color 0.2s;
+    }
+    .logo:hover { color: var(--art-gold); }
+    .logo span {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 4px;
+      color: var(--art-gold);
+      margin-top: 3px;
+      text-transform: uppercase;
+    }
+
+    .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+    .nav-links a {
+      color: var(--canvas-ivory);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      position: relative;
+      padding: 4px 0;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: var(--art-gold);
+      transition: width 0.3s var(--transition-smooth);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--art-gold); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+    .header-actions { display: flex; gap: 1.2rem; align-items: center; }
+    .header-actions button, .header-actions a {
+      background: none;
+      border: none;
+      color: var(--canvas-ivory);
+      font-size: 1.1rem;
+      position: relative;
+      transition: color 0.2s;
+      padding: 4px;
+      cursor: none;
+    }
+    .header-actions button:hover, .header-actions a:hover { color: var(--art-gold); }
+    .badge {
+      position: absolute;
+      top: -6px; right: -8px;
+      background: var(--art-gold);
+      color: var(--gallery-black);
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 20px;
+      min-width: 16px;
+      text-align: center;
+      font-family: var(--font-sans);
+      line-height: 1.4;
+    }
+    .mobile-menu-btn { display: none; font-size: 1.5rem; }
+
+    /* ========== MOBILE MENU ========== */
+    .mobile-nav {
+      position: fixed;
+      top: 0; right: -100%;
+      width: 85%; max-width: 380px;
+      height: 100vh;
+      background: rgba(21, 21, 21, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 200;
+      padding: 6rem 2rem 2rem;
+      transition: right 0.4s var(--transition-smooth);
+      border-left: 1px solid rgba(189, 160, 106, 0.25);
+      overflow-y: auto;
+    }
+    .mobile-nav.open { right: 0; }
+    .mobile-nav a {
+      display: block;
+      color: var(--canvas-ivory);
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(189, 160, 106, 0.12);
+      letter-spacing: 1px;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--art-gold); padding-left: 8px; }
+    .mobile-nav .close-btn {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: none; border: none;
+      color: var(--canvas-ivory);
+      font-size: 1.8rem;
+      cursor: none;
+    }
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 199;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ========== HERO ========== */
+    .hero {
+      padding: 7rem 0 5rem;
+      max-width: 900px;
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--art-gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--art-gold);
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: clamp(2.8rem, 6.5vw, 5.4rem);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      color: var(--canvas-ivory);
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--art-gold);
+      display: inline-block;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(244, 240, 232, 0.78);
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+    .hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--art-gold);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: gap 0.3s, color 0.2s;
+    }
+    .hero-secondary:hover { gap: 14px; color: var(--canvas-ivory); }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 1rem;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(244, 240, 232, 0.4);
+    }
+    .scroll-indicator .line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--art-gold), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
+      50% { transform: scaleY(1); opacity: 1; }
+    }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0.9rem 1.8rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 0;
+      transition: all 0.3s var(--transition-smooth);
+      cursor: none;
+      background: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background: var(--art-gold);
+      color: var(--gallery-black);
+      border-color: var(--art-gold);
+    }
+    .btn-primary:hover { background: transparent; color: var(--art-gold); }
+    .btn-outline {
+      background: transparent;
+      color: var(--canvas-ivory);
+      border-color: rgba(244, 240, 232, 0.3);
+    }
+    .btn-outline:hover { border-color: var(--art-gold); color: var(--art-gold); }
+    .btn-gold {
+      background: transparent;
+      color: var(--art-gold);
+      border-color: var(--art-gold);
+    }
+    .btn-gold:hover { background: var(--art-gold); color: var(--gallery-black); }
+    .btn-sm { padding: 0.6rem 1.2rem; font-size: 0.68rem; }
+    .btn-block { width: 100%; }
+
+    /* ========== SECTION HEADERS ========== */
+    .section {
+      padding: 4.5rem 0;
+      scroll-margin-top: 80px;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(189, 160, 106, 0.2);
+      padding-bottom: 0.9rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .section-header h2 {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+    .section-header p {
+      font-size: 0.85rem;
+      color: rgba(244, 240, 232, 0.55);
+      margin-top: 0.4rem;
+      max-width: 500px;
+    }
+    .section-header a {
+      color: var(--art-gold);
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .section-header a:hover { border-bottom-color: var(--art-gold); color: var(--canvas-ivory); }
+
+    /* ========== CATEGORY CARDS ========== */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+    .category-card {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border: 1px solid rgba(189, 160, 106, 0.2);
+      text-decoration: none;
+      color: var(--canvas-ivory);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      transition: border-color 0.3s, transform 0.4s var(--transition-smooth);
+    }
+    .category-card:hover { border-color: var(--art-gold); transform: translateY(-5px); }
+    .category-card .cat-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s var(--transition-smooth), filter 0.4s;
+      filter: brightness(0.5) saturate(0.8);
+    }
+    .category-card:hover .cat-bg { transform: scale(1.08); filter: brightness(0.65) saturate(1); }
+    .category-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(21,21,21,0.92) 0%, rgba(21,21,21,0.3) 55%, transparent 100%);
+    }
+    .category-card .cat-content { position: relative; z-index: 1; }
+    .category-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      transition: color 0.2s;
+    }
+    .category-card:hover h3 { color: var(--art-gold); }
+    .category-card p {
+      font-size: 0.72rem;
+      color: rgba(244, 240, 232, 0.65);
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+    }
+    .category-card .cat-arrow {
+      margin-top: 0.8rem;
+      color: var(--art-gold);
+      font-size: 1rem;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .category-card:hover .cat-arrow { opacity: 1; transform: translateX(0); }
+
+    /* ========== ARTWORK GRID ========== */
+    .artwork-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.8rem;
+    }
+    .art-card {
+      background: rgba(21, 21, 21, 0.65);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(189, 160, 106, 0.18);
+      transition: transform 0.4s var(--transition-smooth), border-color 0.3s, box-shadow 0.4s;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    .art-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--art-gold);
+      box-shadow: 0 22px 45px rgba(0,0,0,0.65);
+    }
+    .art-card .card-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: #222;
+      overflow: hidden;
+      position: relative;
+    }
+    .art-card .card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s var(--transition-smooth);
+    }
+    .art-card:hover .card-img img { transform: scale(1.05); }
+    .art-card .card-badge {
+      position: absolute;
+      top: 0.9rem; left: 0.9rem;
+      background: var(--art-gold);
+      color: var(--gallery-black);
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 0.28rem 0.7rem;
+      z-index: 1;
+    }
+    .art-card .card-badge.free { background: var(--art-forest); color: var(--canvas-ivory); }
+    .art-card .card-fav {
+      position: absolute;
+      top: 0.7rem; right: 0.7rem;
+      background: rgba(21,21,21,0.7);
+      border: 1px solid rgba(189, 160, 106, 0.3);
+      color: var(--canvas-ivory);
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      font-size: 0.9rem;
+      z-index: 1;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .art-card .card-fav:hover, .art-card .card-fav.active {
+      background: var(--art-gold);
+      color: var(--gallery-black);
+      border-color: var(--art-gold);
+    }
+    .art-card .card-info { padding: 1.2rem 1.1rem; display: flex; flex-direction: column; flex: 1; }
+    .art-card .card-info h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      line-height: 1.2;
+    }
+    .art-card .card-info .artist {
+      font-size: 0.62rem;
+      letter-spacing: 1.2px;
+      color: var(--art-gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .art-card .card-info .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: rgba(244, 240, 232, 0.6);
+      margin-top: auto;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(189, 160, 106, 0.12);
+    }
+    .art-card .card-info .price { color: var(--art-gold); font-weight: 600; font-size: 0.85rem; }
+    .art-card .card-actions {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0 1.1rem 1.1rem;
+    }
+
+    /* ========== FILTER CHIPS ========== */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      align-items: center;
+    }
+    .filter-chip {
+      background: transparent;
+      border: 1px solid rgba(189, 160, 106, 0.3);
+      color: rgba(244, 240, 232, 0.75);
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0.45rem 1rem;
+      transition: all 0.25s;
+      border-radius: 40px;
+    }
+    .filter-chip:hover { border-color: var(--art-gold); color: var(--art-gold); }
+    .filter-chip.active {
+      background: var(--art-gold);
+      color: var(--gallery-black);
+      border-color: var(--art-gold);
+      font-weight: 600;
+    }
+    .filter-bar select, .filter-bar input[type="search"] {
+      background: rgba(21,21,21,0.6);
+      border: 1px solid rgba(189, 160, 106, 0.25);
+      color: var(--canvas-ivory);
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      padding: 0.45rem 0.8rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .filter-bar select:focus, .filter-bar input:focus { border-color: var(--art-gold); }
+    .filter-bar input[type="search"] { flex: 1; min-width: 140px; }
+
+    /* ========== SHOP GRID ========== */
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: rgba(21, 21, 21, 0.65);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(189, 160, 106, 0.18);
+      transition: transform 0.35s var(--transition-smooth), border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-card:hover { transform: translateY(-5px); border-color: var(--art-gold); }
+    .product-card .prod-img {
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: #222;
+      position: relative;
+    }
+    .product-card .prod-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s var(--transition-smooth);
+    }
+    .product-card:hover .prod-img img { transform: scale(1.06); }
+    .product-card .prod-fav {
+      position: absolute;
+      top: 0.6rem; right: 0.6rem;
+      background: rgba(21,21,21,0.7);
+      border: 1px solid rgba(189, 160, 106, 0.3);
+      color: var(--canvas-ivory);
+      width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      z-index: 1;
+      transition: background 0.2s, color 0.2s;
+    }
+    .product-card .prod-fav:hover, .product-card .prod-fav.active {
+      background: var(--art-gold); color: var(--gallery-black);
+    }
+    .product-card .prod-info { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+    .product-card .prod-info h4 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .product-card .prod-type {
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--art-gold);
+      margin-bottom: 0.6rem;
+    }
+    .product-card .prod-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      gap: 0.5rem;
+    }
+    .product-card .prod-price { color: var(--art-gold); font-weight: 600; font-size: 0.85rem; }
+    .product-card .prod-old-price {
+      font-size: 0.7rem;
+      color: var(--muted-gray);
+      text-decoration: line-through;
+      margin-left: 4px;
+    }
+
+    /* ========== SERVICES GRID ========== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+    .service-card {
+      background: rgba(21, 21, 21, 0.65);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(189, 160, 106, 0.18);
+      padding: 1.5rem;
+      transition: transform 0.3s, border-color 0.3s, background 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card:hover { transform: translateY(-4px); border-color: var(--art-gold); background: rgba(189, 160, 106, 0.06); }
+    .service-card .service-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .service-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .service-card p {
+      font-size: 0.75rem;
+      color: rgba(244, 240, 232, 0.6);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+    .service-card .service-price {
+      font-size: 0.72rem;
+      color: var(--art-gold);
+      letter-spacing: 0.5px;
+      margin-bottom: 0.8rem;
+    }
+
+    /* ========== COLLECTIONS ========== */
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .collection-card {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border: 1px solid rgba(189, 160, 106, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--canvas-ivory);
+      transition: border-color 0.3s, transform 0.35s;
+    }
+    .collection-card:hover { border-color: var(--art-gold); transform: translateY(-4px); }
+    .collection-card .coll-bg {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.45);
+      transition: transform 0.7s var(--transition-smooth), filter 0.4s;
+    }
+    .collection-card:hover .coll-bg { transform: scale(1.07); filter: brightness(0.6); }
+    .collection-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(21,21,21,0.95) 0%, rgba(21,21,21,0.2) 60%, transparent 100%);
+    }
+    .collection-card .coll-content { position: relative; z-index: 1; }
+    .collection-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .collection-card p {
+      font-size: 0.7rem;
+      color: rgba(244, 240, 232, 0.65);
+      margin-bottom: 0.5rem;
+    }
+    .collection-card .coll-count { font-size: 0.65rem; color: var(--art-gold); letter-spacing: 1px; }
+
+    /* ========== ARTIST CARDS ========== */
+    .artists-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .artist-profile {
+      background: rgba(21, 21, 21, 0.65);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(189, 160, 106, 0.2);
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .artist-profile:hover { border-color: var(--art-gold); transform: translateY(-3px); }
+    .artist-avatar {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: #2a2a2a;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--art-gold);
+      border: 1px solid var(--art-gold);
+      flex-shrink: 0;
+    }
+    .artist-profile .artist-details h3 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+    .artist-profile .artist-role {
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      color: var(--art-gold);
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .artist-profile .artist-bio {
+      font-size: 0.8rem;
+      color: rgba(244, 240, 232, 0.7);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .artist-profile .artist-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .artist-profile .artist-tags span {
+      font-size: 0.6rem;
+      letter-spacing: 0.8px;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid rgba(189, 160, 106, 0.3);
+      color: rgba(244, 240, 232, 0.7);
+      text-transform: uppercase;
+    }
+    .artist-profile .artist-actions { margin-top: 1rem; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+    /* ========== JOURNAL ========== */
+    .journal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .journal-card {
+      background: rgba(21, 21, 21, 0.65);
+      border: 1px solid rgba(189, 160, 106, 0.18);
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+      text-decoration: none;
+      color: var(--canvas-ivory);
+    }
+    .journal-card:hover { transform: translateY(-4px); border-color: var(--art-gold); }
+    .journal-card .journal-img { aspect-ratio: 16/10; overflow: hidden; background: #222; }
+    .journal-card .journal-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .journal-card:hover .journal-img img { transform: scale(1.05); }
+    .journal-card .journal-body { padding: 1.2rem; }
+    .journal-card .journal-tag {
+      font-size: 0.58rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--art-gold);
+      margin-bottom: 0.5rem;
+    }
+    .journal-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .journal-card p { font-size: 0.75rem; color: rgba(244, 240, 232, 0.6); line-height: 1.5; }
+
+    /* ========== COMMISSION SECTION ========== */
+    .commission-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .commission-visual {
+      background: rgba(21, 21, 21, 0.65);
+      border: 1px solid rgba(189, 160, 106, 0.2);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .commission-steps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--art-gold);
+    }
+    .commission-steps .step-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--art-gold);
+      flex-shrink: 0;
+    }
+    .commission-steps .step-line { flex: 1; height: 1px; background: rgba(189,160,106,0.3); }
+    .commission-photo {
+      aspect-ratio: 4/3;
+      background: #222;
+      overflow: hidden;
+      border: 1px solid rgba(189, 160, 106, 0.15);
+    }
+    .commission-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .commission-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .commission-tags span {
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid rgba(189, 160, 106, 0.3);
+      color: rgba(244, 240, 232, 0.7);
+      text-transform: uppercase;
+    }
+
+    /* Form elements */
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--art-gold);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      background: rgba(21,21,21,0.7);
+      border: 1px solid rgba(189, 160, 106, 0.25);
+      color: var(--canvas-ivory);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      padding: 0.7rem 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--art-gold);
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* Price calculator */
+    .price-calc {
+      background: rgba(21, 21, 21, 0.7);
+      border: 1px solid rgba(189, 160, 106, 0.25);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .price-calc h4 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      padding: 0.35rem 0;
+      color: rgba(244, 240, 232, 0.75);
+      border-bottom: 1px dashed rgba(189, 160, 106, 0.12);
+    }
+    .price-row.total {
+      border-bottom: none;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--art-gold);
+      margin-top: 0.5rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(189, 160, 106, 0.3);
+    }
+    .price-disclaimer {
+      font-size: 0.62rem;
+      color: var(--muted-gray);
+      margin-top: 0.8rem;
+      font-style: italic;
+    }
+
+    /* ========== FAQ ========== */
+    .faq-list { max-width: 800px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid rgba(189, 160, 106, 0.15);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--canvas-ivory);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: left;
+      padding: 1.2rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      cursor: none;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--art-gold); }
+    .faq-question .faq-icon {
+      color: var(--art-gold);
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--transition-smooth), padding 0.3s;
+      font-size: 0.82rem;
+      color: rgba(244, 240, 232, 0.7);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-bottom: 1.2rem;
+    }
+
+    /* ========== NEWSLETTER ========== */
+    .newsletter {
+      background: rgba(48, 76, 67, 0.2);
+      border: 1px solid rgba(189, 160, 106, 0.3);
+      backdrop-filter: blur(10px);
+      padding: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .newsletter h2 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+    }
+    .newsletter p { font-size: 0.85rem; color: rgba(244, 240, 232, 0.7); max-width: 420px; }
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      flex: 1;
+      min-width: 280px;
+      max-width: 460px;
+    }
+    .newsletter-form input {
+      flex: 1;
+      background: rgba(21,21,21,0.7);
+      border: 1px solid rgba(189, 160, 106, 0.35);
+      border-right: none;
+      color: var(--canvas-ivory);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      padding: 0.9rem 1rem;
+      outline: none;
+    }
+    .newsletter-form input:focus { border-color: var(--art-gold); }
+    .newsletter-form button {
+      background: var(--art-gold);
+      border: 1px solid var(--art-gold);
+      color: var(--gallery-black);
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 0 1.5rem;
+      text-transform: uppercase;
+      cursor: none;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover { background: transparent; color: var(--art-gold); }
+
+    /* ========== CONTACT ========== */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .contact-info h2 {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+    .contact-info h2 span { color: var(--art-gold); }
+    .contact-info p { font-size: 0.9rem; color: rgba(244, 240, 232, 0.7); margin-bottom: 1.5rem; max-width: 400px; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
+    .contact-links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--canvas-ivory);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .contact-links a:hover { color: var(--art-gold); padding-left: 6px; }
+    .contact-links a .ci-icon { color: var(--art-gold); font-size: 1.1rem; width: 24px; text-align: center; }
+
+    /* ========== FOOTER ========== */
+    footer {
+      border-top: 1px solid rgba(189, 160, 106, 0.2);
+      padding: 4rem 0 2rem;
+      margin-top: 3rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand .logo { font-size: 1.5rem; margin-bottom: 0.8rem; }
+    .footer-brand p {
+      font-size: 0.78rem;
+      color: rgba(244, 240, 232, 0.55);
+      line-height: 1.7;
+      max-width: 260px;
+      margin-bottom: 1rem;
+    }
+    .footer-brand .owner-credit { font-size: 0.65rem; color: var(--art-gold); letter-spacing: 0.5px; }
+    .footer-col h5 {
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--art-gold);
+      margin-bottom: 1.1rem;
+      font-weight: 600;
+    }
+    .footer-col a {
+      display: block;
+      color: rgba(244, 240, 232, 0.6);
+      text-decoration: none;
+      font-size: 0.78rem;
+      margin-bottom: 0.55rem;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .footer-col a:hover { color: var(--art-gold); padding-left: 4px; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(189, 160, 106, 0.12);
+      font-size: 0.68rem;
+      color: rgba(244, 240, 232, 0.4);
+    }
+    .footer-bottom a { color: var(--art-gold); text-decoration: none; }
+    .footer-bottom a:hover { text-decoration: underline; }
+    .dev-credit { color: var(--art-gold); }
+
+    /* ========== MODAL ========== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .modal-content {
+      background: #1a1a1a;
+      border: 1px solid rgba(189, 160, 106, 0.35);
+      max-width: 720px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.96) translateY(10px);
+      transition: transform 0.35s var(--transition-smooth);
+    }
+    .modal-overlay.open .modal-content { transform: scale(1) translateY(0); }
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: rgba(21,21,21,0.8);
+      border: 1px solid rgba(189, 160, 106, 0.3);
+      color: var(--canvas-ivory);
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      z-index: 2;
+      cursor: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .modal-close:hover { background: var(--art-gold); color: var(--gallery-black); }
+    .modal-body { padding: 1.8rem; }
+    .modal-body h3 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .modal-body .modal-artist {
+      font-size: 0.65rem;
+      letter-spacing: 1.5px;
+      color: var(--art-gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .modal-body .modal-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(189, 160, 106, 0.2);
+    }
+    .modal-body .modal-desc {
+      font-size: 0.82rem;
+      color: rgba(244, 240, 232, 0.7);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .modal-body .modal-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.72rem;
+      color: rgba(244, 240, 232, 0.6);
+      margin-bottom: 1.2rem;
+      padding: 0.8rem 0;
+      border-top: 1px solid rgba(189, 160, 106, 0.15);
+      border-bottom: 1px solid rgba(189, 160, 106, 0.15);
+    }
+    .modal-body .modal-meta strong { color: var(--art-gold); font-weight: 500; }
+    .modal-body .modal-price {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--art-gold);
+      margin-bottom: 1rem;
+    }
+    .modal-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+    /* ========== TOAST ========== */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 600;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      pointer-events: none;
+    }
+    .toast {
+      background: rgba(21,21,21,0.95);
+      border: 1px solid var(--art-gold);
+      border-left: 3px solid var(--art-gold);
+      color: var(--canvas-ivory);
+      font-size: 0.78rem;
+      padding: 0.8rem 1.2rem;
+      max-width: 320px;
+      animation: toastIn 0.35s var(--transition-smooth);
+      pointer-events: auto;
+      backdrop-filter: blur(10px);
+    }
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ========== CART DRAWER ========== */
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: -100%;
+      width: 100%; max-width: 420px;
+      height: 100vh;
+      background: rgba(21,21,21,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.4s var(--transition-smooth);
+      border-left: 1px solid rgba(189, 160, 106, 0.3);
+    }
+    .cart-drawer.open { right: 0; }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(189, 160, 106, 0.2);
+    }
+    .cart-header h3 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600; }
+    .cart-close {
+      background: none; border: none;
+      color: var(--canvas-ivory);
+      font-size: 1.5rem;
+      cursor: none;
+    }
+    .cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+    .cart-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 1rem;
+      color: rgba(244, 240, 232, 0.4);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .cart-empty .empty-icon { font-size: 2.5rem; opacity: 0.4; }
+    .cart-item {
+      display: flex;
+      gap: 0.8rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(189, 160, 106, 0.12);
+      align-items: center;
+    }
+    .cart-item img {
+      width: 56px; height: 56px;
+      object-fit: cover;
+      border: 1px solid rgba(189, 160, 106, 0.2);
+      flex-shrink: 0;
+    }
+    .cart-item .ci-info { flex: 1; }
+    .cart-item .ci-info h5 { font-size: 0.82rem; font-weight: 500; margin-bottom: 0.1rem; }
+    .cart-item .ci-info .ci-price { font-size: 0.75rem; color: var(--art-gold); }
+    .cart-item .ci-qty {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+    }
+    .cart-item .ci-qty button {
+      background: rgba(189, 160, 106, 0.15);
+      border: 1px solid rgba(189, 160, 106, 0.3);
+      color: var(--canvas-ivory);
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+      cursor: none;
+      transition: background 0.2s;
+    }
+    .cart-item .ci-qty button:hover { background: var(--art-gold); color: var(--gallery-black); }
+    .cart-item .ci-remove {
+      background: none; border: none;
+      color: var(--muted-gray);
+      font-size: 0.9rem;
+      cursor: none;
+      transition: color 0.2s;
+    }
+    .cart-item .ci-remove:hover { color: #e05a5a; }
+    .cart-footer {
+      padding: 1.5rem;
+      border-top: 1px solid rgba(189, 160, 106, 0.2);
+    }
+    .cart-subtotal {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .cart-subtotal span:last-child { color: var(--art-gold); font-weight: 600; }
+
+    /* ========== SEARCH OVERLAY ========== */
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(21,21,21,0.97);
+      backdrop-filter: blur(20px);
+      z-index: 400;
+      padding: 6rem 2rem 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      overflow-y: auto;
+    }
+    .search-overlay.open { opacity: 1; pointer-events: auto; }
+    .search-container { max-width: 720px; margin: 0 auto; }
+    .search-input-wrap {
+      display: flex;
+      border-bottom: 2px solid var(--art-gold);
+      padding-bottom: 0.8rem;
+      margin-bottom: 2rem;
+    }
+    .search-input-wrap input {
+      flex: 1;
+      background: none;
+      border: none;
+      color: var(--canvas-ivory);
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      outline: none;
+    }
+    .search-input-wrap input::placeholder { color: rgba(244, 240, 232, 0.3); }
+    .search-input-wrap button {
+      background: none; border: none;
+      color: var(--art-gold);
+      font-size: 1.5rem;
+      cursor: none;
+    }
+    .search-results { display: flex; flex-direction: column; gap: 0.5rem; }
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.8rem;
+      border: 1px solid rgba(189, 160, 106, 0.15);
+      text-decoration: none;
+      color: var(--canvas-ivory);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .search-result-item:hover { border-color: var(--art-gold); background: rgba(189,160,106,0.06); }
+    .search-result-item img { width: 48px; height: 48px; object-fit: cover; flex-shrink: 0; }
+    .search-result-item .sr-info h5 { font-size: 0.9rem; font-weight: 500; }
+    .search-result-item .sr-info span { font-size: 0.7rem; color: var(--art-gold); letter-spacing: 0.5px; text-transform: uppercase; }
+    .search-no-results { text-align: center; padding: 3rem 0; color: rgba(244, 240, 232, 0.4); font-size: 0.9rem; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1200px) {
+      .categories-grid { grid-template-columns: repeat(3, 1fr); }
+      .collections-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+      .footer-grid .footer-col:last-child { display: none; }
+    }
+    @media (max-width: 1024px) {
+      .content { padding: 0 1.8rem; }
+      .commission-wrap { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .artists-grid { grid-template-columns: 1fr; }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid .footer-col:last-child { display: block; }
+    }
+    @media (max-width: 768px) {
+      .content { padding: 0 1.2rem; }
+      .hero { padding: 4rem 0 3rem; }
+      .hero h1 { font-size: 2.6rem; }
+      .section { padding: 3rem 0; }
+      .section-header { flex-direction: column; gap: 0.4rem; }
+      .section-header h2 { font-size: 1.8rem; }
+      .artwork-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+      .shop-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .collections-grid { grid-template-columns: 1fr; }
+      .newsletter { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+      .newsletter h2 { font-size: 1.6rem; }
+      .newsletter-form { width: 100%; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .modal-body { padding: 1.2rem; }
+      .modal-body h3 { font-size: 1.4rem; }
+      .artist-profile { flex-direction: column; align-items: center; text-align: center; }
+      .artist-profile .artist-tags { justify-content: center; }
+      .artist-profile .artist-actions { justify-content: center; }
+      .cart-drawer { max-width: 100%; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.1rem; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn { width: 100%; }
+      .categories-grid { grid-template-columns: 1fr; }
+      .artwork-grid { grid-template-columns: 1fr; }
+      .shop-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .scroll-indicator .line { animation: none; }
+      #bg-canvas { display: none; }
+    }
+
+    /* Utility */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 3D Moving Background Canvas -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="bg-overlay" aria-hidden="true"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- Mobile Navigation Drawer -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <button class="close-btn" id="mobileClose" aria-label="Close menu">✕</button>
+    <a href="#hero">Home</a>
+    <a href="#gallery">Art Gallery</a>
+    <a href="#shop">Art Shop</a>
+    <a href="#commissions">Custom Artwork</a>
+    <a href="#services">Design Services</a>
+    <a href="#free-canvas">Free Canvas</a>
+    <a href="#artists">Artists</a>
+    <a href="#journal">Journal</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- CART DRAWER -->
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <div class="empty-icon">🛒</div>
+        <p>Your cart is empty.<br>Discover beautiful art to add.</p>
+        <a href="#shop" class="btn btn-gold btn-sm" id="cartContinueBtn">Explore Art Shop</a>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">0 RWF</span>
+      </div>
+      <p style="font-size:0.62rem;color:var(--muted-gray);margin-bottom:1rem;">Demo cart — no payment will be processed.</p>
+      <button class="btn btn-primary btn-block" id="checkoutBtn">Proceed to Checkout (Demo)</button>
+    </div>
+  </aside>
+
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay" id="searchOverlay" aria-label="Search">
+    <div class="search-container">
+      <div class="search-input-wrap">
+        <input type="search" id="searchInput" placeholder="Search artworks, products, artists…" aria-label="Search input">
+        <button id="searchClose" aria-label="Close search">✕</button>
+      </div>
+      <div class="search-results" id="searchResults">
+        <div class="search-no-results">Start typing to search artworks, products, and artists.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+
+    <!-- ===== HEADER ===== -->
+    <header id="mainHeader">
+      <a href="#hero" class="logo">
+        IKAZE ART & DESIGN
+        <span>Where Imagination Becomes Art</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#hero" class="active">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#shop">Shop</a>
+        <a href="#commissions">Custom Artwork</a>
+        <a href="#services">Design Services</a>
+        <a href="#free-canvas">Free Canvas</a>
+        <a href="#artists">Artists</a>
+        <a href="#journal">Journal</a>
+      </nav>
+      <div class="header-actions">
+        <button id="searchBtn" aria-label="Search">🔍</button>
+        <button id="wishlistBtn" aria-label="Wishlist">♡ <span class="badge" id="wishlistBadge" style="display:none;">0</span></button>
+        <button id="cartBtn" aria-label="Cart">🛒 <span class="badge" id="cartBadge" style="display:none;">0</span></button>
+        <button id="accountBtn" aria-label="Account">👤</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">☰</button>
+      </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+      <div class="hero-eyebrow">Independent Artists · Creative Studio · Digital Design</div>
+      <h1>ART IS MORE THAN<br>WHAT YOU SEE.<br><em>IT'S WHAT YOU FEEL.</em></h1>
+      <p>Explore original drawings, expressive artwork, creative digital design, artistic products, and personalized creations made to tell stories, inspire emotions, and turn imagination into something real.</p>
+      <div class="hero-buttons">
+        <a href="#gallery" class="btn btn-primary">Explore the Gallery</a>
+        <a href="#commissions" class="btn btn-outline">Commission Your Artwork</a>
+        <a href="#shop" class="btn btn-gold">Shop Creative Products</a>
+      </div>
+      <a href="#categories" class="hero-secondary">Discover our creative world →</a>
+      <div class="scroll-indicator">
+        <span class="line"></span>
+        Scroll
+      </div>
+    </section>
+
+    <!-- ===== CATEGORIES / CREATIVE DISCOVERY ===== -->
+    <section class="section" id="categories">
+      <div class="section-header">
+        <div>
+          <h2>A World Created by Imagination.</h2>
+          <p>Discover different dimensions of art and creativity — from detailed pencil drawings and emotional portraits to contemporary visual design, digital creations, and personalized masterpieces.</p>
+        </div>
+        <a href="#gallery">View all categories →</a>
+      </div>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ===== FEATURED ARTWORK GALLERY ===== -->
+    <section class="section" id="gallery">
+      <div class="section-header">
+        <div>
+          <h2>Selected Works</h2>
+          <p>A collection of stories, emotions, ideas and worlds captured through art.</p>
+        </div>
+        <a href="#gallery">View complete gallery →</a>
+      </div>
+
+      <!-- Filters & Search -->
+      <div class="filter-bar" id="galleryFilters">
+        <button class="filter-chip active" data-filter="all">All Artworks</button>
+        <button class="filter-chip" data-filter="portraits">Portraits</button>
+        <button class="filter-chip" data-filter="pencil">Pencil</button>
+        <button class="filter-chip" data-filter="charcoal">Charcoal</button>
+        <button class="filter-chip" data-filter="painting">Painting</button>
+        <button class="filter-chip" data-filter="digital">Digital</button>
+        <button class="filter-chip" data-filter="abstract">Abstract</button>
+        <button class="filter-chip" data-filter="cultural">Cultural</button>
+        <button class="filter-chip" data-filter="landscape">Landscape</button>
+        <button class="filter-chip" data-filter="architecture">Architecture</button>
+        <select id="gallerySort" aria-label="Sort artworks">
+          <option value="newest">Newest</option>
+          <option value="featured">Featured</option>
+          <option value="popular">Popular</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+        </select>
+        <input type="search" id="gallerySearch" placeholder="Search artworks…" aria-label="Search artworks">
+      </div>
+
+      <div class="artwork-grid" id="artworkGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ===== CUSTOM COMMISSION SECTION ===== -->
+    <section class="section" id="commissions">
+      <div class="section-header">
+        <div>
+          <h2>Your Story. Your Photo. Our Art.</h2>
+          <p>Have a photograph you wish to transform into a timeless drawing? Let us turn your favorite memories, loved ones, special moments, or ideas into unique artwork created just for you.</p>
+        </div>
+      </div>
+
+      <div class="commission-wrap">
+        <!-- Visual / Process -->
+        <div class="commission-visual">
+          <div class="commission-steps">
+            <span>Reference</span>
+            <span class="step-dot"></span>
+            <span class="step-line"></span>
+            <span class="step-dot"></span>
+            <span class="step-line"></span>
+            <span class="step-dot"></span>
+            <span>Masterpiece</span>
+          </div>
+          <div class="commission-photo">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" alt="Reference photo to artwork transformation">
+          </div>
+          <div class="commission-tags">
+            <span>Realistic</span>
+            <span>Hyperrealistic</span>
+            <span>Semi-realistic</span>
+            <span>Graphite</span>
+            <span>Charcoal</span>
+            <span>Colored Pencil</span>
+            <span>Watercolor</span>
+            <span>Digital</span>
+          </div>
+          <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+            <a href="#commissions" class="btn btn-primary btn-sm">Create My Custom Artwork</a>
+            <a href="#contact" class="btn btn-outline btn-sm">Ask a Question</a>
+          </div>
+        </div>
+
+        <!-- Commission Form -->
+        <div>
+          <form id="commissionForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="commName">Full Name *</label>
+                <input type="text" id="commName" required placeholder="Your name">
+              </div>
+              <div class="form-group">
+                <label for="commEmail">Email *</label>
+                <input type="email" id="commEmail" required placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="commPhone">Phone / WhatsApp</label>
+                <input type="tel" id="commPhone" placeholder="+250 ...">
+              </div>
+              <div class="form-group">
+                <label for="commType">Artwork Type</label>
+                <select id="commType">
+                  <option value="single">Single Portrait</option>
+                  <option value="couple">Couple Portrait</option>
+                  <option value="family">Family Portrait</option>
+                  <option value="pet">Pet Portrait</option>
+                  <option value="house">House Drawing</option>
+                  <option value="character">Custom Character</option>
+                  <option value="illustration">Custom Illustration</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="commStyle">Drawing Style</label>
+                <select id="commStyle">
+                  <option value="realistic">Realistic</option>
+                  <option value="hyperrealistic">Hyperrealistic</option>
+                  <option value="semi-realistic">Semi-realistic</option>
+                  <option value="pencil">Graphite Pencil</option>
+                  <option value="charcoal">Charcoal</option>
+                  <option value="colored-pencil">Colored Pencil</option>
+                  <option value="watercolor">Watercolor</option>
+                  <option value="digital">Digital Painting</option>
+                  <option value="minimalist">Minimalist</option>
+                  <option value="abstract">Abstract</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="commSize">Size</label>
+                <select id="commSize">
+                  <option value="small">Small (A5)</option>
+                  <option value="medium" selected>Medium (A4)</option>
+                  <option value="large">Large (A3)</option>
+                  <option value="xlarge">Extra Large (A2+)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="commSubjects">Number of Subjects</label>
+                <select id="commSubjects">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5+</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="commDeadline">Deadline Urgency</label>
+                <select id="commDeadline">
+                  <option value="standard">Standard (2–3 weeks)</option>
+                  <option value="rush">Rush (1 week) +20%</option>
+                  <option value="express">Express (3–4 days) +40%</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="commDesc">Describe Your Vision</label>
+              <textarea id="commDesc" placeholder="Tell us about the artwork you have in mind..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="commUpload">Upload Reference Photo(s)</label>
+              <input type="file" id="commUpload" accept="image/*" multiple style="padding:0.5rem;font-size:0.72rem;">
+            </div>
+
+            <!-- Price Calculator -->
+            <div class="price-calc" id="priceCalc">
+              <h4>Instant Quote Estimate</h4>
+              <div id="priceBreakdown">
+                <!-- Rendered by JS -->
+              </div>
+              <p class="price-disclaimer">Illustrative quote only. Actual quotation may depend on artist review. Artists retain final approval.</p>
+              <button type="button" class="btn btn-gold btn-sm btn-block" id="getQuoteBtn" style="margin-top:0.8rem;">Get My Quote</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" style="margin-top:1rem;">Submit Request (Demo)</button>
+            <p style="font-size:0.62rem;color:var(--muted-gray);margin-top:0.6rem;text-align:center;">Demo form — not connected to a backend. Your request will not be sent.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SHOP ===== -->
+    <section class="section" id="shop">
+      <div class="section-header">
+        <div>
+          <h2>Art You Can Take Home.</h2>
+          <p>Discover unique creations available for purchase — from digital art and printable illustrations to original artwork, creative merchandise and premium design products.</p>
+        </div>
+        <a href="#shop">Visit full shop →</a>
+      </div>
+
+      <div class="filter-bar" id="shopFilters">
+        <button class="filter-chip active" data-shop-filter="all">All Products</button>
+        <button class="filter-chip" data-shop-filter="digital">Digital Art</button>
+        <button class="filter-chip" data-shop-filter="print">Prints & Posters</button>
+        <button class="filter-chip" data-shop-filter="merch">Merchandise</button>
+        <button class="filter-chip" data-shop-filter="template">Templates</button>
+      </div>
+
+      <div class="shop-grid" id="shopGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ===== FREE CANVAS ===== -->
+    <section class="section" id="free-canvas">
+      <div class="section-header">
+        <div>
+          <h2>Creativity Should Be Shared.</h2>
+          <p>Explore our free creative collection, made to inspire, encourage, and help people bring art into their everyday lives.</p>
+        </div>
+        <a href="#free-canvas">View all free resources →</a>
+      </div>
+      <div class="shop-grid" id="freeCanvasGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="section" id="services">
+      <div class="section-header">
+        <div>
+          <h2>Ideas Deserve Beautiful Execution.</h2>
+          <p>From branding to visual communication, we turn ideas into professional designs that capture attention and express identity.</p>
+        </div>
+        <a href="#contact">Request a service →</a>
+      </div>
+      <div class="services-grid" id="servicesGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ===== BOOK ARTISTS ===== -->
+    <section class="section" id="book">
+      <div class="section-header">
+        <div>
+          <h2>Let's Create Together.</h2>
+          <p>From the first idea to the final masterpiece, let's bring your vision to life. Book a consultation or creative session.</p>
+        </div>
+      </div>
+      <div class="commission-wrap">
+        <div class="commission-visual">
+          <h4 style="font-family:var(--font-serif);font-size:1.4rem;margin-bottom:0.8rem;">Booking Services</h4>
+          <div class="commission-tags" style="margin-bottom:1.2rem;">
+            <span>Art Consultation</span>
+            <span>Drawing Consultation</span>
+            <span>Graphic Design</span>
+            <span>Branding</span>
+            <span>Live Drawing</span>
+            <span>Art Lessons</span>
+            <span>Workshop</span>
+            <span>Collaboration</span>
+            <span>Event Art</span>
+            <span>Custom Design Meeting</span>
+          </div>
+          <div class="commission-photo" style="aspect-ratio:16/9;">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" alt="Creative consultation session">
+          </div>
+          <p style="font-size:0.75rem;color:rgba(244,240,232,0.6);margin-top:0.8rem;">Available for online and in-person sessions. Based in Rwanda, serving clients globally.</p>
+        </div>
+        <div>
+          <form id="bookingForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bookName">Full Name *</label>
+                <input type="text" id="bookName" required placeholder="Your name">
+              </div>
+              <div class="form-group">
+                <label for="bookEmail">Email *</label>
+                <input type="email" id="bookEmail" required placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bookPhone">Phone</label>
+                <input type="tel" id="bookPhone" placeholder="+250 ...">
+              </div>
+              <div class="form-group">
+                <label for="bookArtist">Preferred Artist</label>
+                <select id="bookArtist">
+                  <option value="both">Either / Both</option>
+                  <option value="theoneste">NIYIBIGIRA Theoneste</option>
+                  <option value="pacifique">MUHAWENAYO Pacifique</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bookService">Service *</label>
+                <select id="bookService" required>
+                  <option value="">Select a service…</option>
+                  <option value="art-consultation">Art Consultation</option>
+                  <option value="drawing-consultation">Drawing Consultation</option>
+                  <option value="graphic-design">Graphic Design Consultation</option>
+                  <option value="branding">Branding Consultation</option>
+                  <option value="live-drawing">Live Drawing Session</option>
+                  <option value="art-lesson">Art Lesson</option>
+                  <option value="workshop">Creative Workshop</option>
+                  <option value="collaboration">Project Collaboration</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bookDate">Preferred Date</label>
+                <input type="date" id="bookDate">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="bookDetails">Project Details</label>
+              <textarea id="bookDetails" placeholder="Tell us about your project or what you'd like to discuss..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="bookBudget">Budget Range</label>
+              <select id="bookBudget">
+                <option value="under-10k">Under 10,000 RWF</option>
+                <option value="10k-30k">10,000 – 30,000 RWF</option>
+                <option value="30k-60k">30,000 – 60,000 RWF</option>
+                <option value="60k+">60,000+ RWF</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Request Booking (Demo)</button>
+            <p style="font-size:0.62rem;color:var(--muted-gray);margin-top:0.6rem;text-align:center;">Demo booking form — not connected to a backend.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ARTISTS ===== -->
+    <section class="section" id="artists">
+      <div class="section-header">
+        <div>
+          <h2>Two Creative Minds. One World of Imagination.</h2>
+        </div>
+      </div>
+      <div class="artists-grid">
+        <div class="artist-profile">
+          <div class="artist-avatar">NT</div>
+          <div class="artist-details">
+            <div class="artist-role">Creative Artist · Designer · Digital Creator</div>
+            <h3>NIYIBIGIRA Theoneste</h3>
+            <p class="artist-bio">An artist and creative mind working across art, illustration, digital creativity, design and visual expression. Exploring the intersection of traditional technique and modern digital creativity.</p>
+            <div class="artist-tags">
+              <span>Portrait</span>
+              <span>Digital Art</span>
+              <span>Design</span>
+              <span>Illustration</span>
+            </div>
+            <div class="artist-actions">
+              <a href="#gallery" class="btn btn-gold btn-sm">View Portfolio</a>
+              <a href="#contact" class="btn btn-outline btn-sm">Commission</a>
+            </div>
+          </div>
+        </div>
+        <div class="artist-profile">
+          <div class="artist-avatar">MP</div>
+          <div class="artist-details">
+            <div class="artist-role">Artist · Illustrator · Creative Collaborator</div>
+            <h3>MUHAWENAYO Pacifique</h3>
+            <p class="artist-bio">A creative artist contributing artistic expression, illustration, design, creative ideas and distinctive artwork. Dedicated to visual imagination and the creation of meaningful pieces.</p>
+            <div class="artist-tags">
+              <span>Charcoal</span>
+              <span>Painting</span>
+              <span>Cultural Art</span>
+              <span>Illustration</span>
+            </div>
+            <div class="artist-actions">
+              <a href="#gallery" class="btn btn-gold btn-sm">View Portfolio</a>
+              <a href="#contact" class="btn btn-outline btn-sm">Commission</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== COLLECTIONS ===== -->
+    <section class="section" id="collections">
+      <div class="section-header">
+        <div>
+          <h2>Curated Collections</h2>
+          <p>Organized worlds of art, each telling its own story.</p>
+        </div>
+        <a href="#collections">Explore all collections →</a>
+      </div>
+      <div class="collections-grid" id="collectionsGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ===== JOURNAL ===== -->
+    <section class="section" id="journal">
+      <div class="section-header">
+        <div>
+          <h2>Behind Every Creation, There Is a Story.</h2>
+          <p>Insights into the creative process, art techniques, studio life, and inspiration.</p>
+        </div>
+        <a href="#journal">Read all articles →</a>
+      </div>
+      <div class="journal-grid" id="journalGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ===== COMMUNITY ===== -->
+    <section class="section" id="community">
+      <div class="section-header">
+        <div>
+          <h2>Make. Share. Inspire.</h2>
+          <p>Join creative challenges and become part of the growing IKAZE community.</p>
+        </div>
+      </div>
+      <div class="services-grid" id="communityGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter">
+      <div>
+        <h2>Stay Close to Creativity.</h2>
+        <p>Discover new artworks, creative releases, free downloads, special collections, and inspiration from our studio.</p>
+      </div>
+      <form class="newsletter-form" id="newsletterForm" novalidate>
+        <input type="email" id="newsletterEmail" placeholder="Your email address" required aria-label="Email address">
+        <button type="submit">Join the Creative List</button>
+      </form>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section" id="faq">
+      <div class="section-header">
+        <div>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section" id="contact">
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <h2>Have an Idea?<br><span>Let's Give It Form.</span></h2>
+          <p>Have an idea, a photograph, a creative project, or a design request? Tell us about it and let's turn your vision into something extraordinary.</p>
+          <div class="contact-links">
+            <a href="mailto:ikazedigital@gmail.com">
+              <span class="ci-icon">✉</span> ikazedigital@gmail.com
+            </a>
+            <a href="https://wa.me/250794204258" target="_blank" rel="noopener">
+              <span class="ci-icon">📱</span> +250 794 204 258 (WhatsApp)
+            </a>
+            <a href="tel:+250794204258">
+              <span class="ci-icon">📞</span> +250 794 204 258
+            </a>
+          </div>
+          <div style="margin-top:1.5rem;">
+            <a href="#commissions" class="btn btn-gold btn-sm">Request Artwork</a>
+            <a href="#services" class="btn btn-outline btn-sm" style="margin-left:0.6rem;">Request Design</a>
+          </div>
+        </div>
+        <div>
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Name *</label>
+                <input type="text" id="contactName" required placeholder="Your name">
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email *</label>
+                <input type="email" id="contactEmail" required placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactType">Inquiry Type</label>
+              <select id="contactType">
+                <option value="general">General Inquiry</option>
+                <option value="commission">Commission Request</option>
+                <option value="design">Design Service</option>
+                <option value="collaboration">Collaboration</option>
+                <option value="purchase">Artwork Purchase</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message *</label>
+              <textarea id="contactMessage" required placeholder="Tell us about your idea or question..." rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send Message (Demo)</button>
+            <p style="font-size:0.62rem;color:var(--muted-gray);margin-top:0.6rem;text-align:center;">Demo form — not connected to a backend. Please use email or WhatsApp for real inquiries.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="logo">IKAZE ART & DESIGN</a>
+          <p>Where Imagination Becomes Art. An artistic ecosystem for original artwork, digital design, creative products and personalized commissions.</p>
+          <p class="owner-credit">Created by NIYIBIGIRA Theoneste & MUHAWENAYO Pacifique</p>
+        </div>
+        <div class="footer-col">
+          <h5>Explore</h5>
+          <a href="#hero">Home</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#shop">Art Shop</a>
+          <a href="#collections">Collections</a>
+          <a href="#free-canvas">Free Canvas</a>
+          <a href="#artists">Artists</a>
+          <a href="#journal">Journal</a>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="#commissions">Custom Drawings</a>
+          <a href="#commissions">Portrait Commissions</a>
+          <a href="#services">Graphic Design</a>
+          <a href="#services">Branding</a>
+          <a href="#book">Book Artists</a>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <a href="#contact">Contact</a>
+          <a href="#faq">FAQs</a>
+          <a href="#shop">Orders</a>
+          <a href="#free-canvas">Downloads</a>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Artwork License</a>
+        </div>
+        <div class="footer-col">
+          <h5>Connect</h5>
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="TikTok">TikTok</a>
+          <a href="#" aria-label="Pinterest">Pinterest</a>
+          <a href="#" aria-label="YouTube">YouTube</a>
+          <a href="#" aria-label="Behance">Behance</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>Email: ikazedigital@gmail.com &nbsp;|&nbsp; Phone: +250 794 204 258</div>
+        <div>© 2026 IKAZE ART & DESIGN. All rights reserved.</div>
+        <div>Developed by <a href="https://ikaze-digital.vercel.app/" target="_blank" rel="noopener">IKAZE DIGITAL</a></div>
+      </div>
+    </footer>
+
+  </div><!-- /.content -->
+
+  <!-- ===== ARTWORK MODAL ===== -->
+  <div class="modal-overlay" id="artworkModal" role="dialog" aria-modal="true" aria-label="Artwork details">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal-body" id="modalBody">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ============================================================
+       IKAZE ART & DESIGN — HOMEPAGE INTERACTIVITY
+       All demo data is structured for easy replacement.
+       No backend is connected; all forms are clearly labeled as demo.
+       ============================================================ */
+
+    // ========== DEMO DATA ==========
+    const categories = [
+      { id: 'portraits', title: 'Portrait Art', desc: 'Realistic faces, individual portraits, couples, families and emotions.', img: 'https://images.unsplash.com/photo-1549887534-1541e9326642?q=80&w=600&auto=format&fit=crop' },
+      { id: 'pencil', title: 'Pencil & Charcoal', desc: 'Graphite, shading, charcoal, monochrome and fine-detail drawings.', img: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?q=80&w=600&auto=format&fit=crop' },
+      { id: 'painting', title: 'Painting & Fine Art', desc: 'Acrylic, watercolor, mixed media, expressive and contemporary paintings.', img: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=600&auto=format&fit=crop' },
+      { id: 'digital', title: 'Digital Illustration', desc: 'Digital paintings, creative illustrations, characters and concept art.', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop' },
+      { id: 'design', title: 'Graphic Design', desc: 'Branding, posters, logos, layouts and visual communication.', img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600&auto=format&fit=crop' },
+      { id: 'cultural', title: 'Cultural & African Art', desc: 'Rwanda-inspired art, cultural creativity, heritage and modern African expression.', img: 'https://images.unsplash.com/photo-1580060839134-75a5edca2e99?q=80&w=600&auto=format&fit=crop' },
+      { id: 'landscape', title: 'Landscape & Architecture', desc: 'Landscapes, buildings, cities, nature and architectural illustrations.', img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600&auto=format&fit=crop' },
+      { id: 'experimental', title: 'Experimental Art', desc: 'Abstract, surreal, futuristic and experimental creations.', img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=600&auto=format&fit=crop' }
+    ];
+
+    const artworks = [
+      { id: 'aw1', title: 'Silent Emotions', artist: 'NIYIBIGIRA Theoneste', category: 'portraits', medium: 'Graphite on paper', year: 2025, price: 25000, free: false, featured: true, popularity: 92, desc: 'A deeply expressive portrait capturing the quiet intensity of human emotion through delicate graphite shading.', img: 'https://images.unsplash.com/photo-1549887534-1541e9326642?q=80&w=800&auto=format&fit=crop' },
+      { id: 'aw2', title: 'The Eyes of Memory', artist: 'MUHAWENAYO Pacifique', category: 'charcoal', medium: 'Charcoal on paper', year: 2024, price: 35000, free: false, featured: true, popularity: 88, desc: 'A dramatic charcoal piece exploring remembrance and the stories held within a single gaze.', img: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?q=80&w=800&auto=format&fit=crop' },
+      { id: 'aw3', title: 'African Soul', artist: 'MUHAWENAYO Pacifique', category: 'cultural', medium: 'Acrylic on canvas', year: 2025, price: 45000, free: false, featured: true, popularity: 95, desc: 'A vibrant celebration of African heritage, identity and creative spirit rendered in bold acrylic.', img: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=800&auto=format&fit=crop' },
+      { id: 'aw4', title: 'Golden Silence', artist: 'NIYIBIGIRA Theoneste', category: 'painting', medium: 'Oil on canvas', year: 2025, price: 55000, free: false, featured: false, popularity: 76, desc: 'A contemplative oil painting where golden light meets quiet introspection.', img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=800&auto=format&fit=crop' },
+      { id: 'aw5', title: "A Mother's Reflection", artist: 'NIYIBIGIRA Theoneste', category: 'portraits', medium: 'Colored pencil', year: 2024, price: 30000, free: false, featured: false, popularity: 84, desc: 'A tender colored-pencil portrait honoring maternal love and quiet strength.', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=800&auto=format&fit=crop' },
+      { id: 'aw6', title: 'The Dreamer', artist: 'MUHAWENAYO Pacifique', category: 'digital', medium: 'Digital illustration', year: 2025, price: 18000, free: false, featured: true, popularity: 90, desc: 'A surreal digital illustration exploring imagination, dreams and boundless possibility.', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop' },
+      { id: 'aw7', title: 'Beyond the Hills', artist: 'MUHAWENAYO Pacifique', category: 'landscape', medium: 'Watercolor', year: 2024, price: 22000, free: false, featured: false, popularity: 70, desc: 'A watercolor homage to the rolling hills and natural beauty of Rwanda.', img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop' },
+      { id: 'aw8', title: 'The Human Experience', artist: 'NIYIBIGIRA Theoneste', category: 'portraits', medium: 'Charcoal & graphite', year: 2025, price: 40000, free: false, featured: false, popularity: 86, desc: 'A mixed-medium portrait exploring the depth and complexity of human experience.', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop' },
+      { id: 'aw9', title: 'The Beauty of Simplicity', artist: 'MUHAWENAYO Pacifique', category: 'minimalist', medium: 'Ink on paper', year: 2024, price: 12000, free: false, featured: false, popularity: 65, desc: 'A minimalist ink drawing celebrating the elegance of simplicity and negative space.', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=800&auto=format&fit=crop' },
+      { id: 'aw10', title: 'Eternal Expression', artist: 'NIYIBIGIRA Theoneste', category: 'abstract', medium: 'Mixed media', year: 2025, price: 48000, free: false, featured: true, popularity: 82, desc: 'An abstract mixed-media work exploring eternal themes through color and texture.', img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop' },
+      { id: 'aw11', title: 'Rwanda Hills Sketch', artist: 'MUHAWENAYO Pacifique', category: 'landscape', medium: 'Pencil sketch', year: 2025, price: 8000, free: false, featured: false, popularity: 60, desc: 'A delicate pencil sketch capturing the iconic rolling hills of Rwanda.', img: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop' },
+      { id: 'aw12', title: 'Free Sketch — Study of Hands', artist: 'NIYIBIGIRA Theoneste', category: 'pencil', medium: 'Graphite on paper', year: 2025, price: 0, free: true, featured: false, popularity: 78, desc: 'A free study of hands in graphite — download and practice your own drawing.', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=800&auto=format&fit=crop' }
+    ];
+
+    const products = [
+      { id: 'p1', name: 'The African Soul Art Print', type: 'print', price: 5000, oldPrice: 7000, img: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=600&auto=format&fit=crop' },
+      { id: 'p2', name: 'Minimalist Portrait Collection', type: 'digital', price: 8000, oldPrice: null, img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop' },
+      { id: 'p3', name: 'Rwanda Hills Wallpaper Pack', type: 'digital', price: 2500, oldPrice: null, img: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=600&auto=format&fit=crop' },
+      { id: 'p4', name: 'Creative Sketchbook Vol. 1', type: 'merch', price: 12000, oldPrice: 15000, img: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?q=80&w=600&auto=format&fit=crop' },
+      { id: 'p5', name: 'Abstract Dreams Poster', type: 'print', price: 6000, oldPrice: null, img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=600&auto=format&fit=crop' },
+      { id: 'p6', name: 'Pencil Art Collection PDF', type: 'digital', price: 3500, oldPrice: null, img: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?q=80&w=600&auto=format&fit=crop' },
+      { id: 'p7', name: 'Digital Illustration Pack', type: 'digital', price: 9000, oldPrice: 11000, img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop' },
+      { id: 'p8', name: 'Modern Art Bundle', type: 'template', price: 15000, oldPrice: null, img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=600&auto=format&fit=crop' }
+    ];
+
+    const freeCanvasItems = [
+      { id: 'f1', name: 'Phone Wallpaper — Golden Line', type: 'Wallpaper', format: 'JPG · 1170×2532', license: 'Personal use', img: 'https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=600&auto=format&fit=crop' },
+      { id: 'f2', name: 'Desktop Wallpaper — Rwanda Hills', type: 'Wallpaper', format: 'JPG · 3840×2160', license: 'Personal use', img: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=600&auto=format&fit=crop' },
+      { id: 'f3', name: 'Free Coloring Page — Portrait', type: 'Printable', format: 'PDF · A4', license: 'Personal use', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop' },
+      { id: 'f4', name: 'Drawing Practice Sheet', type: 'Practice', format: 'PDF · A4', license: 'Educational use', img: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?q=80&w=600&auto=format&fit=crop' },
+      { id: 'f5', name: 'Creative Pattern Pack', type: 'Texture', format: 'PNG · 2000×2000', license: 'Free with attribution', img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=600&auto=format&fit=crop' },
+      { id: 'f6', name: 'Free Poster Template', type: 'Template', format: 'PSD · 1080×1350', license: 'Personal use', img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600&auto=format&fit=crop' }
+    ];
+
+    const services = [
+      { id: 's1', icon: '🎨', title: 'Logo & Brand Identity', desc: 'Logos, brand marks, visual identity, business cards, brand guidelines, color palettes and typography systems.', price: 'From 15,000 RWF' },
+      { id: 's2', icon: '📄', title: 'Posters & Flyers', desc: 'Event posters, music posters, promotional flyers, campaign graphics, school and organizational posters.', price: 'From 5,000 RWF' },
+      { id: 's3', icon: '📱', title: 'Social Media Design', desc: 'Instagram posts, banners, campaign packs, story designs and advertisement creatives.', price: 'From 3,000 RWF' },
+      { id: 's4', icon: '📖', title: 'Print & Editorial', desc: 'Brochures, book covers, magazines, menus, invitations, certificates and packaging.', price: 'From 5,000 RWF' },
+      { id: 's5', icon: '👕', title: 'Merchandise Design', desc: 'T-shirts, hoodies, tote bags, mugs and custom merchandise graphics.', price: 'From 8,000 RWF' },
+      { id: 's6', icon: '📊', title: 'Presentation Design', desc: 'Business presentations, school presentations, project decks and pitch decks.', price: 'From 20,000 RWF' },
+      { id: 's7', icon: '✏️', title: 'Illustration & Concept', desc: 'Custom illustrations, characters, visual concepts, digital illustrations and storyboards.', price: 'From 10,000 RWF' },
+      { id: 's8', icon: '🏢', title: 'Complete Brand Identity', desc: 'Full brand identity package including logo, guidelines, stationery and visual system.', price: 'From 50,000 RWF' }
+    ];
+
+    const collections = [
+      { id: 'c1', title: 'The Human Collection', desc: 'Portraits, expressions, people and emotions.', count: 18, img: 'https://images.unsplash.com/photo-1549887534-1541e9326642?q=80&w=600&auto=format&fit=crop' },
+      { id: 'c2', title: 'African Soul', desc: 'Cultural creativity, African inspiration and identity.', count: 12, img: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=600&auto=format&fit=crop' },
+      { id: 'c3', title: 'The Pencil Chronicles', desc: 'Pencil drawings, graphite and shading.', count: 24, img: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?q=80&w=600&auto=format&fit=crop' },
+      { id: 'c4', title: 'Color & Emotion', desc: 'Painting, color and expressive creativity.', count: 15, img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=600&auto=format&fit=crop' },
+      { id: 'c5', title: 'Dreamscape', desc: 'Abstract, surreal and imaginative artwork.', count: 9, img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=600&auto=format&fit=crop' },
+      { id: 'c6', title: 'Nature\'s Canvas', desc: 'Landscapes, plants and natural beauty.', count: 11, img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600&auto=format&fit=crop' },
+      { id: 'c7', title: 'Architectural Rwanda', desc: 'Architecture, scenery and Rwandan-inspired environments.', count: 7, img: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=600&auto=format&fit=crop' },
+      { id: 'c8', title: 'The Digital Era', desc: 'Digital art, technology and futuristic illustration.', count: 14, img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop' },
+      { id: 'c9', title: 'Love & Memory', desc: 'Couple portraits, family, celebrations and meaningful moments.', count: 16, img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=600&auto=format&fit=crop' }
+    ];
+
+    const journal = [
+      { id: 'j1', tag: 'Process', title: 'From Photo to Pencil Portrait', desc: 'How a photograph transforms into a timeless graphite drawing.', img: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?q=80&w=600&auto=format&fit=crop' },
+      { id: 'j2', tag: 'Technique', title: 'Creating Realistic Drawings', desc: 'A look at the techniques behind our hyperrealistic portraits.', img: 'https://images.unsplash.com/photo-1549887534-1541e9326642?q=80&w=600&auto=format&fit=crop' },
+      { id: 'j3', tag: 'Story', title: 'The Meaning Behind African Soul', desc: 'Exploring the cultural inspiration behind this celebrated piece.', img: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=600&auto=format&fit=crop' },
+      { id: 'j4', tag: 'Inspiration', title: 'Art in Rwanda', desc: 'Creative expression and artistic heritage in the land of a thousand hills.', img: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=600&auto=format&fit=crop' },
+      { id: 'j5', tag: 'Tools', title: 'Materials & Techniques', desc: 'The tools and materials that shape our creative process.', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop' },
+      { id: 'j6', tag: 'Studio', title: 'Behind the Scenes', desc: 'A glimpse into daily life inside the IKAZE creative studio.', img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop' }
+    ];
+
+    const challenges = [
+      { id: 'ch1', icon: '✏️', title: 'Draw a Face in 30 Minutes', desc: 'A quick-fire portrait challenge to loosen up and practice observation.', price: 'Monthly Challenge' },
+      { id: 'ch2', icon: '🏔️', title: 'Draw Rwanda Through Your Eyes', desc: 'Express the beauty and spirit of Rwanda in your own artistic style.', price: 'Community Event' },
+      { id: 'ch3', icon: '🎨', title: 'One Object, Three Styles', desc: 'Take a single object and render it in three completely different artistic styles.', price: 'Art of the Week' }
+    ];
+
+    const faqs = [
+      { q: 'Can I request a custom drawing?', a: 'Yes! We specialize in custom portraits, illustrations, and personalized artwork. Use our commission form above to tell us your vision, upload reference photos, and request a quote.' },
+      { q: 'Can I upload my own photograph?', a: 'Absolutely. Our commission form allows you to upload one or multiple reference photos. We will use these to create your personalized artwork.' },
+      { q: 'How long does a portrait take?', a: 'Typical turnaround is 2–3 weeks for standard commissions. Rush options are available for an additional fee. Large or complex pieces may take longer.' },
+      { q: 'How are custom prices determined?', a: 'Pricing depends on the number of subjects, drawing style, size, background complexity, color, framing, and deadline urgency. Use our instant quote estimator for an approximate price.' },
+      { q: 'Can I request changes to my drawing?', a: 'Yes. We share a preview of the work-in-progress and offer a revision stage. Your feedback is part of the creative process.' },
+      { q: 'Can I buy original artworks?', a: 'Yes, original artworks are available in the gallery and shop. Each artwork page includes availability and pricing information.' },
+      { q: 'Are digital downloads free?', a: 'Some resources in our Free Canvas section are free, while premium digital products are available for purchase in the Art Shop. Each item clearly indicates its license.' },
+      { q: 'What license applies to free downloads?', a: 'Licenses vary per item — personal use, educational use, or free with attribution. Please check each download for its specific license terms.' },
+      { q: 'Can I use digital products commercially?', a: 'Commercial use depends on the license of each product. Premium licenses may be available; please contact us for commercial licensing inquiries.' },
+      { q: 'Do you offer graphic design services?', a: 'Yes — logo design, branding, posters, social media graphics, editorial design, merchandise, and presentations. See our Design Services section.' },
+      { q: 'Can I book an artist?', a: 'Yes, use the booking form in the "Let\'s Create Together" section to request a consultation, lesson, workshop, or collaboration.' },
+      { q: 'How do I pay?', a: 'We accept mobile money, bank transfer, and other methods. For commissions, a 50% deposit is typically required to begin work. Payment details are shared after your quote is approved.' },
+      { q: 'How do I receive my artwork?', a: 'Digital artwork is delivered via secure download. Physical artwork is shipped or arranged for pickup. Delivery details are confirmed with your order.' },
+      { q: 'Can artwork be delivered physically?', a: 'Yes, physical artworks can be shipped. Shipping costs depend on your location and will be quoted separately.' },
+      { q: 'How do I contact the artists?', a: 'Email ikazedigital@gmail.com, WhatsApp +250 794 204 258, or use the contact form above. We respond within business hours.' }
+    ];
+
+    // ========== PRICING CONFIG (editable) ==========
+    const pricingConfig = {
+      base: { single: 15000, couple: 30000, family: 35000, pet: 10000, house: 20000, character: 12000, illustration: 15000 },
+      styleUpgrade: { realistic: 0, hyperrealistic: 10000, 'semi-realistic': 3000, pencil: 0, charcoal: 2000, 'colored-pencil': 4000, watercolor: 5000, digital: 0, minimalist: -2000, abstract: 3000 },
+      sizeUpgrade: { small: -3000, medium: 0, large: 5000, xlarge: 12000 },
+      subjectAdd: 7000,
+      deadlineMultiplier: { standard: 1, rush: 1.2, express: 1.4 }
+    };
+
+    // ========== STATE ==========
+    const state = {
+      galleryFilter: 'all',
+      gallerySort: 'newest',
+      gallerySearch: '',
+      shopFilter: 'all',
+      wishlist: JSON.parse(localStorage.getItem('ikaze_wishlist') || '[]'),
+      cart: JSON.parse(localStorage.getItem('ikaze_cart') || '[]')
+    };
+
+    // ========== HELPERS ==========
+    function formatRWF(amount) {
+      return amount.toLocaleString('en-RW') + ' RWF';
+    }
+
+    function saveWishlist() {
+      localStorage.setItem('ikaze_wishlist', JSON.stringify(state.wishlist));
+      updateWishlistBadge();
+    }
+
+    function saveCart() {
+      localStorage.setItem('ikaze_cart', JSON.stringify(state.cart));
+      updateCartBadge();
+      renderCart();
+    }
+
+    function updateWishlistBadge() {
+      const badge = document.getElementById('wishlistBadge');
+      if (state.wishlist.length > 0) {
+        badge.style.display = 'inline-block';
+        badge.textContent = state.wishlist.length;
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    function updateCartBadge() {
+      const badge = document.getElementById('cartBadge');
+      const totalQty = state.cart.reduce((sum, item) => sum + item.qty, 0);
+      if (totalQty > 0) {
+        badge.style.display = 'inline-block';
+        badge.textContent = totalQty;
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    function toast(message) {
+      const container = document.getElementById('toastContainer');
+      const el = document.createElement('div');
+      el.className = 'toast';
+      el.textContent = message;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(30px)';
+        el.style.transition = 'opacity 0.3s, transform 0.3s';
+        setTimeout(() => el.remove(), 350);
+      }, 3200);
+    }
+
+    // ========== RENDER CATEGORIES ==========
+    function renderCategories() {
+      const grid = document.getElementById('categoriesGrid');
+      grid.innerHTML = categories.map(cat => `
+        <a href="#gallery" class="category-card" data-cat="${cat.id}">
+          <div class="cat-bg" style="background-image:url('${cat.img}');"></div>
+          <div class="cat-content">
+            <h3>${cat.title}</h3>
+            <p>${cat.desc}</p>
+            <div class="cat-arrow">→</div>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    // ========== RENDER ARTWORKS ==========
+    function renderArtworks() {
+      const grid = document.getElementById('artworkGrid');
+      let filtered = artworks.slice();
+
+      // filter
+      if (state.galleryFilter !== 'all') {
+        filtered = filtered.filter(a => a.category === state.galleryFilter || (state.galleryFilter === 'portraits' && a.category === 'portraits'));
+      }
+      // search
+      if (state.gallerySearch) {
+        const q = state.gallerySearch.toLowerCase();
+        filtered = filtered.filter(a => a.title.toLowerCase().includes(q) || a.artist.toLowerCase().includes(q) || a.medium.toLowerCase().includes(q));
+      }
+      // sort
+      switch (state.gallerySort) {
+        case 'newest': filtered.sort((a, b) => b.year - a.year); break;
+        case 'featured': filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)); break;
+        case 'popular': filtered.sort((a, b) => b.popularity - a.popularity); break;
+        case 'price-low': filtered.sort((a, b) => a.price - b.price); break;
+        case 'price-high': filtered.sort((a, b) => b.price - a.price); break;
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:rgba(244,240,232,0.4);">No artworks match your filter. Try another category.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(a => `
+        <article class="art-card" data-id="${a.id}">
+          <div class="card-img">
+            <img src="${a.img}" alt="${a.title}" loading="lazy">
+            ${a.featured ? '<span class="card-badge">Featured</span>' : ''}
+            ${a.free ? '<span class="card-badge free">Free</span>' : ''}
+            <button class="card-fav ${state.wishlist.includes(a.id) ? 'active' : ''}" data-fav="${a.id}" aria-label="Add to wishlist">♡</button>
+          </div>
+          <div class="card-info">
+            <h3>${a.title}</h3>
+            <div class="artist">${a.artist}</div>
+            <div class="meta">
+              <span>${a.medium} · ${a.year}</span>
+              <span class="price">${a.free ? 'Free' : formatRWF(a.price)}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-gold btn-sm view-art" data-id="${a.id}">View Artwork</button>
+            ${a.free
+              ? '<button class="btn btn-outline btn-sm download-art" data-id="' + a.id + '">Download</button>'
+              : '<button class="btn btn-outline btn-sm add-to-cart" data-id="' + a.id + '">Add to Cart</button>'}
+          </div>
+        </article>
+      `).join('');
+
+      // attach wishlist toggles
+      grid.querySelectorAll('[data-fav]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleWishlist(btn.dataset.fav, btn);
+        });
+      });
+      // view modal
+      grid.querySelectorAll('.view-art').forEach(btn => {
+        btn.addEventListener('click', () => openArtworkModal(btn.dataset.id));
+      });
+      // add to cart (artwork)
+      grid.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const artwork = artworks.find(a => a.id === btn.dataset.id);
+          if (artwork) addToCart(artwork.id, artwork.title, artwork.price, artwork.img);
+        });
+      });
+      // download free
+      grid.querySelectorAll('.download-art').forEach(btn => {
+        btn.addEventListener('click', () => {
+          toast('Demo download — free asset would download here.');
+        });
+      });
+    }
+
+    // ========== RENDER SHOP ==========
+    function renderShop() {
+      const grid = document.getElementById('shopGrid');
+      let filtered = products.slice();
+      if (state.shopFilter !== 'all') {
+        filtered = filtered.filter(p => p.type === state.shopFilter);
+      }
+      grid.innerHTML = filtered.map(p => `
+        <article class="product-card" data-id="${p.id}">
+          <div class="prod-img">
+            <img src="${p.img}" alt="${p.name}" loading="lazy">
+            <button class="prod-fav ${state.wishlist.includes(p.id) ? 'active' : ''}" data-fav="${p.id}" aria-label="Add to wishlist">♡</button>
+          </div>
+          <div class="prod-info">
+            <div class="prod-type">${p.type}</div>
+            <h4>${p.name}</h4>
+            <div class="prod-meta">
+              <div>
+                <span class="prod-price">${formatRWF(p.price)}</span>
+                ${p.oldPrice ? `<span class="prod-old-price">${formatRWF(p.oldPrice)}</span>` : ''}
+              </div>
+              <button class="btn btn-gold btn-sm add-to-cart-prod" data-id="${p.id}">Add</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      grid.querySelectorAll('[data-fav]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleWishlist(btn.dataset.fav, btn);
+        });
+      });
+      grid.querySelectorAll('.add-to-cart-prod').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const prod = products.find(p => p.id === btn.dataset.id);
+          if (prod) addToCart(prod.id, prod.name, prod.price, prod.img);
+        });
+      });
+    }
+
+    // ========== RENDER FREE CANVAS ==========
+    function renderFreeCanvas() {
+      const grid = document.getElementById('freeCanvasGrid');
+      grid.innerHTML = freeCanvasItems.map(f => `
+        <article class="product-card">
+          <div class="prod-img">
+            <img src="${f.img}" alt="${f.name}" loading="lazy">
+            <span class="card-badge free" style="position:absolute;top:0.6rem;left:0.6rem;">Free</span>
+          </div>
+          <div class="prod-info">
+            <div class="prod-type">${f.type} · ${f.format}</div>
+            <h4>${f.name}</h4>
+            <p style="font-size:0.65rem;color:var(--muted-gray);margin-bottom:0.6rem;">${f.license}</p>
+            <div class="prod-meta">
+              <span style="font-size:0.7rem;color:var(--art-gold);">Free Download</span>
+              <button class="btn btn-outline btn-sm free-dl" data-name="${f.name}">Download</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      grid.querySelectorAll('.free-dl').forEach(btn => {
+        btn.addEventListener('click', () => {
+          toast('Demo download — "' + btn.dataset.name + '" would download here.');
+        });
+      });
+    }
+
+    // ========== RENDER SERVICES ==========
+    function renderServices() {
+      const grid = document.getElementById('servicesGrid');
+      grid.innerHTML = services.map(s => `
+        <article class="service-card">
+          <div class="service-icon">${s.icon}</div>
+          <h4>${s.title}</h4>
+          <p>${s.desc}</p>
+          <div class="service-price">${s.price}</div>
+          <a href="#contact" class="btn btn-gold btn-sm">Request This Service</a>
+        </article>
+      `).join('');
+    }
+
+    // ========== RENDER COLLECTIONS ==========
+    function renderCollections() {
+      const grid = document.getElementById('collectionsGrid');
+      grid.innerHTML = collections.map(c => `
+        <a href="#gallery" class="collection-card">
+          <div class="coll-bg" style="background-image:url('${c.img}');"></div>
+          <div class="coll-content">
+            <h4>${c.title}</h4>
+            <p>${c.desc}</p>
+            <div class="coll-count">${c.count} artworks · Explore →</div>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    // ========== RENDER JOURNAL ==========
+    function renderJournal() {
+      const grid = document.getElementById('journalGrid');
+      grid.innerHTML = journal.map(j => `
+        <a href="#journal" class="journal-card">
+          <div class="journal-img"><img src="${j.img}" alt="${j.title}" loading="lazy"></div>
+          <div class="journal-body">
+            <div class="journal-tag">${j.tag}</div>
+            <h4>${j.title}</h4>
+            <p>${j.desc}</p>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    // ========== RENDER COMMUNITY ==========
+    function renderCommunity() {
+      const grid = document.getElementById('communityGrid');
+      grid.innerHTML = challenges.map(c => `
+        <article class="service-card">
+          <div class="service-icon">${c.icon}</div>
+          <h4>${c.title}</h4>
+          <p>${c.desc}</p>
+          <div class="service-price">${c.price} · Demo Challenge</div>
+          <button class="btn btn-outline btn-sm join-challenge">Join Challenge</button>
+        </article>
+      `).join('');
+
+      grid.querySelectorAll('.join-challenge').forEach(btn => {
+        btn.addEventListener('click', () => toast('Demo — community challenges will be fully available in the upcoming community area.'));
+      });
+    }
+
+    // ========== RENDER FAQ ==========
+    function renderFAQ() {
+      const list = document.getElementById('faqList');
+      list.innerHTML = faqs.map((f, i) => `
+        <div class="faq-item" data-index="${i}">
+          <button class="faq-question" aria-expanded="false">
+            <span>${f.q}</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">${f.a}</div>
+        </div>
+      `).join('');
+
+      list.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
+          // close all
+          list.querySelectorAll('.faq-item').forEach(el => {
+            el.classList.remove('open');
+            el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            item.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    }
+
+    // ========== WISHLIST ==========
+    function toggleWishlist(id, btn) {
+      const idx = state.wishlist.indexOf(id);
+      if (idx > -1) {
+        state.wishlist.splice(idx, 1);
+        btn.classList.remove('active');
+        toast('Removed from wishlist');
+      } else {
+        state.wishlist.push(id);
+        btn.classList.add('active');
+        toast('Added to wishlist ♡');
+      }
+      saveWishlist();
+    }
+
+    // ========== CART ==========
+    function addToCart(id, name, price, img) {
+      const existing = state.cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        state.cart.push({ id, name, price, img, qty: 1 });
+      }
+      saveCart();
+      toast(`Added "${name}" to cart`);
+      openCart();
+    }
+
+    function renderCart() {
+      const itemsEl = document.getElementById('cartItems');
+      const footerEl = document.getElementById('cartFooter');
+      if (state.cart.length === 0) {
+        itemsEl.innerHTML = `
+          <div class="cart-empty">
+            <div class="empty-icon">🛒</div>
+            <p>Your cart is empty.<br>Discover beautiful art to add.</p>
+            <a href="#shop" class="btn btn-gold btn-sm" id="cartContinueBtn">Explore Art Shop</a>
+          </div>`;
+        footerEl.style.display = 'none';
+        const cont = document.getElementById('cartContinueBtn');
+        if (cont) cont.addEventListener('click', closeCart);
+        return;
+      }
+      footerEl.style.display = 'block';
+      itemsEl.innerHTML = state.cart.map(item => `
+        <div class="cart-item" data-id="${item.id}">
+          <img src="${item.img}" alt="${item.name}">
+          <div class="ci-info">
+            <h5>${item.name}</h5>
+            <div class="ci-price">${formatRWF(item.price)}</div>
+          </div>
+          <div class="ci-qty">
+            <button class="qty-minus" aria-label="Decrease quantity">−</button>
+            <span>${item.qty}</span>
+            <button class="qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="ci-remove" aria-label="Remove item">✕</button>
+        </div>
+      `).join('');
+
+      const subtotal = state.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      document.getElementById('cartSubtotal').textContent = formatRWF(subtotal);
+
+      itemsEl.querySelectorAll('.cart-item').forEach(el => {
+        const id = el.dataset.id;
+        el.querySelector('.qty-minus').addEventListener('click', () => {
+          const item = state.cart.find(i => i.id === id);
+          if (item) {
+            if (item.qty > 1) item.qty -= 1;
+            else state.cart = state.cart.filter(i => i.id !== id);
+            saveCart();
+          }
+        });
+        el.querySelector('.qty-plus').addEventListener('click', () => {
+          const item = state.cart.find(i => i.id === id);
+          if (item) item.qty += 1;
+          saveCart();
+        });
+        el.querySelector('.ci-remove').addEventListener('click', () => {
+          state.cart = state.cart.filter(i => i.id !== id);
+          saveCart();
+        });
+      });
+    }
+
+    function openCart() {
+      document.getElementById('cartDrawer').classList.add('open');
+      document.body.classList.add('no-scroll');
+    }
+    function closeCart() {
+      document.getElementById('cartDrawer').classList.remove('open');
+      document.body.classList.remove('no-scroll');
+    }
+
+    // ========== ARTWORK MODAL ==========
+    function openArtworkModal(id) {
+      const a = artworks.find(x => x.id === id);
+      if (!a) return;
+      const modal = document.getElementById('artworkModal');
+      const body = document.getElementById('modalBody');
+      body.innerHTML = `
+        <img class="modal-img" src="${a.img}" alt="${a.title}">
+        <h3>${a.title}</h3>
+        <div class="modal-artist">${a.artist}</div>
+        <p class="modal-desc">${a.desc}</p>
+        <div class="modal-meta">
+          <span><strong>Medium:</strong> ${a.medium}</span>
+          <span><strong>Year:</strong> ${a.year}</span>
+          <span><strong>Category:</strong> ${a.category}</span>
+        </div>
+        <div class="modal-price">${a.free ? 'Free Download' : formatRWF(a.price)}</div>
+        <div class="modal-actions">
+          ${a.free
+            ? '<button class="btn btn-gold" id="modalDownload">Download Free Artwork</button>'
+            : '<button class="btn btn-primary" id="modalBuy">Buy This Artwork</button>'}
+          <button class="btn btn-outline" id="modalWishlist">${state.wishlist.includes(a.id) ? '♥ Saved' : '♡ Add to Wishlist'}</button>
+          <a href="#commissions" class="btn btn-outline" id="modalSimilar">Commission Similar</a>
+          <a href="#contact" class="btn btn-outline">Ask About This Piece</a>
+        </div>
+      `;
+      modal.classList.add('open');
+      document.body.classList.add('no-scroll');
+
+      // attach actions
+      const buyBtn = document.getElementById('modalBuy');
+      if (buyBtn) buyBtn.addEventListener('click', () => {
+        addToCart(a.id, a.title, a.price, a.img);
+        closeModal();
+      });
+      const dlBtn = document.getElementById('modalDownload');
+      if (dlBtn) dlBtn.addEventListener('click', () => {
+        toast('Demo download — free artwork would download here.');
+      });
+      const wlBtn = document.getElementById('modalWishlist');
+      if (wlBtn) wlBtn.addEventListener('click', () => {
+        const idx = state.wishlist.indexOf(a.id);
+        if (idx > -1) {
+          state.wishlist.splice(idx, 1);
+          wlBtn.textContent = '♡ Add to Wishlist';
+          toast('Removed from wishlist');
+        } else {
+          state.wishlist.push(a.id);
+          wlBtn.textContent = '♥ Saved';
+          toast('Added to wishlist ♡');
+        }
+        saveWishlist();
+        renderArtworks();
+        renderShop();
+      });
+      const simBtn = document.getElementById('modalSimilar');
+      if (simBtn) simBtn.addEventListener('click', closeModal);
+    }
+
+    function closeModal() {
+      document.getElementById('artworkModal').classList.remove('open');
+      document.body.classList.remove('no-scroll');
+    }
+
+    // ========== SEARCH ==========
+    function openSearch() {
+      document.getElementById('searchOverlay').classList.add('open');
+      document.body.classList.add('no-scroll');
+      document.getElementById('searchInput').focus();
+    }
+    function closeSearch() {
+      document.getElementById('searchOverlay').classList.remove('open');
+      document.body.classList.remove('no-scroll');
+      document.getElementById('searchInput').value = '';
+      document.getElementById('searchResults').innerHTML = '<div class="search-no-results">Start typing to search artworks, products, and artists.</div>';
+    }
+
+    function performSearch(query) {
+      const resultsEl = document.getElementById('searchResults');
+      if (!query.trim()) {
+        resultsEl.innerHTML = '<div class="search-no-results">Start typing to search artworks, products, and artists.</div>';
+        return;
+      }
+      const q = query.toLowerCase();
+      const artResults = artworks.filter(a => a.title.toLowerCase().includes(q) || a.artist.toLowerCase().includes(q) || a.medium.toLowerCase().includes(q)).slice(0, 5);
+      const prodResults = products.filter(p => p.name.toLowerCase().includes(q)).slice(0, 5);
+      const artistResults = [
+        { name: 'NIYIBIGIRA Theoneste', role: 'Creative Artist · Designer', img: 'https://images.unsplash.com/photo-1549887534-1541e9326642?q=80&w=200&auto=format&fit=crop' },
+        { name: 'MUHAWENAYO Pacifique', role: 'Artist · Illustrator', img: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=200&auto=format&fit=crop' }
+      ].filter(a => a.name.toLowerCase().includes(q));
+
+      let html = '';
+      artResults.forEach(a => {
+        html += `<a href="#gallery" class="search-result-item" data-search-close><img src="${a.img}" alt="${a.title}"><div class="sr-info"><h5>${a.title}</h5><span>Artwork · ${a.artist}</span></div></a>`;
+      });
+      prodResults.forEach(p => {
+        html += `<a href="#shop" class="search-result-item" data-search-close><img src="${p.img}" alt="${p.name}"><div class="sr-info"><h5>${p.name}</h5><span>Product · ${formatRWF(p.price)}</span></div></a>`;
+      });
+      artistResults.forEach(a => {
+        html += `<a href="#artists" class="search-result-item" data-search-close><img src="${a.img}" alt="${a.name}"><div class="sr-info"><h5>${a.name}</h5><span>Artist · ${a.role}</span></div></a>`;
+      });
+
+      if (html === '') {
+        resultsEl.innerHTML = '<div class="search-no-results">No results found. Try a different search term.</div>';
+      } else {
+        resultsEl.innerHTML = html;
+        resultsEl.querySelectorAll('[data-search-close]').forEach(el => {
+          el.addEventListener('click', closeSearch);
+        });
+      }
+    }
+
+    // ========== COMMISSION PRICE CALCULATOR ==========
+    function calculateCommissionPrice() {
+      const type = document.getElementById('commType').value;
+      const style = document.getElementById('commStyle').value;
+      const size = document.getElementById('commSize').value;
+      const subjects = parseInt(document.getElementById('commSubjects').value);
+      const deadline = document.getElementById('commDeadline').value;
+
+      let base = pricingConfig.base[type] || 15000;
+      let styleUp = pricingConfig.styleUpgrade[style] || 0;
+      let sizeUp = pricingConfig.sizeUpgrade[size] || 0;
+      let subjectExtra = subjects > 1 ? (subjects - 1) * pricingConfig.subjectAdd : 0;
+      let subtotal = base + styleUp + sizeUp + subjectExtra;
+      let multiplier = pricingConfig.deadlineMultiplier[deadline] || 1;
+      let total = Math.round(subtotal * multiplier);
+
+      const breakdown = document.getElementById('priceBreakdown');
+      breakdown.innerHTML = `
+        <div class="price-row"><span>Base (${type})</span><span>${formatRWF(base)}</span></div>
+        ${styleUp !== 0 ? `<div class="price-row"><span>Style (${style})</span><span>${styleUp > 0 ? '+' : ''}${formatRWF(styleUp)}</span></div>` : ''}
+        ${sizeUp !== 0 ? `<div class="price-row"><span>Size (${size})</span><span>${sizeUp > 0 ? '+' : ''}${formatRWF(sizeUp)}</span></div>` : ''}
+        ${subjectExtra > 0 ? `<div class="price-row"><span>Extra subjects (${subjects - 1})</span><span>+${formatRWF(subjectExtra)}</span></div>` : ''}
+        ${multiplier !== 1 ? `<div class="price-row"><span>Deadline (${deadline})</span><span>×${multiplier}</span></div>` : ''}
+        <div class="price-row total"><span>Estimated Total</span><span>${formatRWF(total)}</span></div>
+      `;
+      return total;
+    }
+
+    // ========== NEWSLETTER VALIDATION ==========
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    // ========== 3D BACKGROUND CANVAS ==========
+    (function initBackground() {
+      const canvas = document.getElementById('bg-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width, height;
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const particleCount = window.innerWidth < 768 ? 50 : 110;
+      const particles = [];
+      const colors = ['#BDA06A', '#F4F0E8', '#304C43', '#73746B', '#FFFFFF'];
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          z: Math.random() * 800 + 200,
+          size: Math.random() * 2.5 + 1,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speedX: (Math.random() - 0.5) * 0.3,
+          speedY: (Math.random() - 0.5) * 0.3,
+          speedZ: (Math.random() - 0.5) * 0.2
+        });
+      }
+
+      let mouseX = width / 2, mouseY = height / 2;
+      let targetMouseX = width / 2, targetMouseY = height / 2;
+      window.addEventListener('mousemove', (e) => {
+        targetMouseX = e.clientX;
+        targetMouseY = e.clientY;
+      });
+
+      let time = 0;
+      function animate() {
+        time += 0.005;
+        mouseX += (targetMouseX - mouseX) * 0.05;
+        mouseY += (targetMouseY - mouseY) * 0.05;
+
+        ctx.clearRect(0, 0, width, height);
+        const sorted = [...particles].sort((a, b) => b.z - a.z);
+
+        for (let i = 0; i < sorted.length; i++) {
+          const p = sorted[i];
+          p.x += p.speedX + Math.sin(time + p.z * 0.001) * 0.15;
+          p.y += p.speedY + Math.cos(time + p.z * 0.001) * 0.15;
+          p.z += p.speedZ * 0.5;
+          if (p.x < -50) p.x = width + 50;
+          if (p.x > width + 50) p.x = -50;
+          if (p.y < -50) p.y = height + 50;
+          if (p.y > height + 50) p.y = -50;
+          if (p.z < 100) p.z = 900;
+          if (p.z > 1000) p.z = 100;
+
+          const scale = 800 / (p.z + 400);
+          const offsetX = (mouseX - width / 2) * 0.06 * (800 / (p.z + 200));
+          const offsetY = (mouseY - height / 2) * 0.06 * (800 / (p.z + 200));
+          const projX = width / 2 + (p.x - width / 2) * scale + offsetX;
+          const projY = height / 2 + (p.y - height / 2) * scale + offsetY;
+          const size = p.size * scale * 2.2;
+
+          ctx.beginPath();
+          ctx.arc(projX, projY, size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = 0.3 + scale * 0.2;
+          ctx.shadowColor = p.color;
+          ctx.shadowBlur = 12 * scale;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+          ctx.globalAlpha = 1;
+
+          for (let j = i + 1; j < Math.min(i + 5, sorted.length); j++) {
+            const p2 = sorted[j];
+            const scale2 = 800 / (p2.z + 400);
+            const ox2 = (mouseX - width / 2) * 0.06 * (800 / (p2.z + 200));
+            const oy2 = (mouseY - height / 2) * 0.06 * (800 / (p2.z + 200));
+            const projX2 = width / 2 + (p2.x - width / 2) * scale2 + ox2;
+            const projY2 = height / 2 + (p2.y - height / 2) * scale2 + oy2;
+            const dx = projX - projX2;
+            const dy = projY - projY2;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 150) {
+              ctx.beginPath();
+              ctx.moveTo(projX, projY);
+              ctx.lineTo(projX2, projY2);
+              ctx.strokeStyle = p.color;
+              ctx.globalAlpha = 0.04 * (1 - dist / 150) * scale;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+              ctx.globalAlpha = 1;
+            }
+          }
+        }
+
+        // soft ambient circles
+        ctx.globalAlpha = 0.03;
+        for (let k = 0; k < 3; k++) {
+          const cx = width * (0.3 + 0.2 * Math.sin(time * 0.3 + k * 2)) + (mouseX - width/2) * 0.01;
+          const cy = height * (0.4 + 0.2 * Math.cos(time * 0.5 + k * 1.5)) + (mouseY - height/2) * 0.01;
+          const r = 200 + 80 * Math.sin(time * 0.2 + k);
+          const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+          grad.addColorStop(0, '#BDA06A');
+          grad.addColorStop(1, 'transparent');
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    // ========== CURSOR GLOW ==========
+    (function initCursor() {
+      const glow = document.getElementById('cursorGlow');
+      document.addEventListener('mousemove', (e) => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      });
+      document.querySelectorAll('a, button, .art-card, .product-card, .category-card, .collection-card, .service-card, input, select, textarea, .filter-chip, .faq-question').forEach(el => {
+        el.addEventListener('mouseenter', () => glow.classList.add('hover'));
+        el.addEventListener('mouseleave', () => glow.classList.remove('hover'));
+      });
+    })();
+
+    // ========== HEADER SCROLL ==========
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('mainHeader');
+      if (window.scrollY > 50) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // ========== MOBILE MENU ==========
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      document.getElementById('mobileNav').classList.add('open');
+      document.getElementById('mobileOverlay').classList.add('open');
+    });
+    document.getElementById('mobileClose').addEventListener('click', closeMobile);
+    document.getElementById('mobileOverlay').addEventListener('click', closeMobile);
+    function closeMobile() {
+      document.getElementById('mobileNav').classList.remove('open');
+      document.getElementById('mobileOverlay').classList.remove('open');
+    }
+    document.querySelectorAll('#mobileNav a').forEach(a => {
+      a.addEventListener('click', closeMobile);
+    });
+
+    // ========== SEARCH / WISHLIST / CART / ACCOUNT BUTTONS ==========
+    document.getElementById('searchBtn').addEventListener('click', openSearch);
+    document.getElementById('searchClose').addEventListener('click', closeSearch);
+    document.getElementById('searchInput').addEventListener('input', (e) => performSearch(e.target.value));
+    document.getElementById('searchOverlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('searchOverlay')) closeSearch();
+    });
+
+    document.getElementById('cartBtn').addEventListener('click', openCart);
+    document.getElementById('cartClose').addEventListener('click', closeCart);
+    document.getElementById('cartDrawer').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('cartDrawer')) closeCart();
+    });
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+      toast('Demo checkout — payment integration is not connected.');
+    });
+
+    document.getElementById('wishlistBtn').addEventListener('click', () => {
+      if (state.wishlist.length === 0) {
+        toast('Your wishlist is empty. Save artworks you love ♡');
+      } else {
+        toast(`You have ${state.wishlist.length} saved item(s) in your wishlist.`);
+      }
+    });
+
+    document.getElementById('accountBtn').addEventListener('click', () => {
+      toast('Account area is coming soon — demo only.');
+    });
+
+    // ========== MODAL CLOSE ==========
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('artworkModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('artworkModal')) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeCart();
+        closeSearch();
+        closeMobile();
+      }
+    });
+
+    // ========== GALLERY FILTERS ==========
+    document.querySelectorAll('#galleryFilters .filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#galleryFilters .filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        state.galleryFilter = chip.dataset.filter;
+        renderArtworks();
+      });
+    });
+    document.getElementById('gallerySort').addEventListener('change', (e) => {
+      state.gallerySort = e.target.value;
+      renderArtworks();
+    });
+    document.getElementById('gallerySearch').addEventListener('input', (e) => {
+      state.gallerySearch = e.target.value;
+      renderArtworks();
+    });
+
+    // ========== SHOP FILTERS ==========
+    document.querySelectorAll('#shopFilters .filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#shopFilters .filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        state.shopFilter = chip.dataset.shopFilter;
+        renderShop();
+      });
+    });
+
+    // ========== COMMISSION PRICE CALC ==========
+    ['commType', 'commStyle', 'commSize', 'commSubjects', 'commDeadline'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('change', calculateCommissionPrice);
+    });
+    document.getElementById('getQuoteBtn').addEventListener('click', () => {
+      const total = calculateCommissionPrice();
+      toast(`Estimated total: ${formatRWF(total)}. This is an illustrative quote — artists will confirm.`);
+    });
+
+    // ========== COMMISSION FORM SUBMIT ==========
+    document.getElementById('commissionForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('commName').value.trim();
+      const email = document.getElementById('commEmail').value.trim();
+      if (!name || !email || !validateEmail(email)) {
+        toast('Please provide a valid name and email address.');
+        return;
+      }
+      toast('Demo submission received — this form is not connected to a backend. Please contact us via email or WhatsApp.');
+      e.target.reset();
+      calculateCommissionPrice();
+    });
+
+    // ========== BOOKING FORM SUBMIT ==========
+    document.getElementById('bookingForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('bookName').value.trim();
+      const email = document.getElementById('bookEmail').value.trim();
+      const service = document.getElementById('bookService').value;
+      if (!name || !email || !validateEmail(email) || !service) {
+        toast('Please fill in your name, a valid email, and select a service.');
+        return;
+      }
+      toast('Demo booking request received — not connected to a backend. Please contact us directly.');
+      e.target.reset();
+    });
+
+    // ========== CONTACT FORM SUBMIT ==========
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const message = document.getElementById('contactMessage').value.trim();
+      if (!name || !email || !validateEmail(email) || !message) {
+        toast('Please fill in your name, a valid email, and a message.');
+        return;
+      }
+      toast('Demo message received — not sent. Please email ikazedigital@gmail.com or use WhatsApp for real inquiries.');
+      e.target.reset();
+    });
+
+    // ========== NEWSLETTER SUBMIT ==========
+    document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('newsletterEmail').value.trim();
+      if (!validateEmail(email)) {
+        toast('Please enter a valid email address.');
+        return;
+      }
+      toast('Demo subscription — backend mailing integration required to actually subscribe.');
+      e.target.reset();
+    });
+
+    // ========== INIT ==========
+    function init() {
+      renderCategories();
+      renderArtworks();
+      renderShop();
+      renderFreeCanvas();
+      renderServices();
+      renderCollections();
+      renderJournal();
+      renderCommunity();
+      renderFAQ();
+      renderCart();
+      updateWishlistBadge();
+      updateCartBadge();
+      calculateCommissionPrice();
+    }
+
+    init();
+  </script>
+</body>
+</html>
